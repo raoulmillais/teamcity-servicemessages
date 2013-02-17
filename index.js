@@ -26,5 +26,16 @@ module.exports = {
 
 		return util.format('##teamcity[%s%s%s%s]',
 			name, valueOrProperties, flowId, timestamp);
+	},
+	openBlock: function openBlock(blockName, flowId, disableTimestamp) {
+		return this.formatMessage('blockOpened', {
+			name: blockName 
+		}, flowId, disableTimestamp);
+	},
+	closeBlock: function closeBlock(blockName, flowId, disableTimestamp) {
+		return this.formatMessage('blockClosed', {
+			name: blockName 
+		}, flowId, disableTimestamp);
 	}
+
 };

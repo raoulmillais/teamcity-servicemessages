@@ -74,4 +74,18 @@ describe('Teamcity Service Messages', function () {
 
 	});
 
+	describe('blocks', function () {
+
+		it('should format a blockOpened message', function () {
+			var blockMessage = teamcity.openBlock('block1', undefined, true);
+			assert.equal(blockMessage, '##teamcity[blockOpened name=\'block1\']');
+		});
+
+		it('should format a blockClosed message', function () {
+			var blockMessage = teamcity.closeBlock('block1', undefined, true);
+			assert.equal(blockMessage, '##teamcity[blockClosed name=\'block1\']');
+		});
+	});
+
+
 });
