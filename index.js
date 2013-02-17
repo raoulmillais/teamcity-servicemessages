@@ -56,6 +56,54 @@ module.exports = {
 		return this.formatMessage('compilationFinished', {
 			compiler: compilerName
 		}, flowId, disableTimestamp);
+	},
+	startTestSuite: function startTestSuite(name, flowId, disableTimestamp) {
+		return this.formatMessage('testSuiteStarted', {
+			name: name
+		}, flowId, disableTimestamp);
+	},
+	finishTestSuite: function finishTestSuite(name, flowId, disableTimestamp) {
+		return this.formatMessage('testSuiteFinished', {
+			name: name
+		}, flowId, disableTimestamp);
+	},
+	startTest: function startTest(name, flowId, disableTimestamp) {
+		return this.formatMessage('testStarted', {
+			name: name
+		}, flowId, disableTimestamp);
+	},
+	finishTest: function finishTest(name, flowId, disableTimestamp) {
+		return this.formatMessage('testFinished', {
+			name: name
+		}, flowId, disableTimestamp);
+	},
+	ignoreTest: function ignoreTest(name, reason, flowId, disableTimestamp) {
+		return this.formatMessage('testIgnored', {
+			name: name,
+			message: reason
+		}, flowId, disableTimestamp);
+	},
+	testOutput: function testOutput(name, output, flowId, disableTimestamp) {
+		return this.formatMessage('testStdOut', {
+			name: name,
+			out: output
+		}, flowId, disableTimestamp);
+	},
+	testError: function testError(name, error, flowId, disableTimestamp) {
+		return this.formatMessage('testStdErr', {
+			name: name,
+			out: error
+		}, flowId, disableTimestamp);
+	},
+	failTest: function failTest(name, message, details, flowId,
+								disableTimestamp) {
+		return this.formatMessage('testFailed', {
+			name: name,
+			message: message,
+			details: details
+		}, flowId, disableTimestamp);
 	}
+
+
 
 };

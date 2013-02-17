@@ -104,6 +104,55 @@ describe('Teamcity Service Messages', function () {
 			var msg = teamcity.finishCompilation('mycc', undefined, true);
 			assert.equal(msg, '##teamcity[compilationFinished compiler=\'mycc\']');
 		});
+
+	});
+
+	describe('test messages', function () {
+
+		it('should format a testSuiteStarted message', function () {
+			var msg = teamcity.startTestSuite('suite name', undefined, true);
+			assert.equal(msg, '##teamcity[testSuiteStarted name=\'suite name\']');
+		});
+
+		it('should format a testSuiteFinished message', function () {
+			var msg = teamcity.finishTestSuite('suite name', undefined, true);
+			assert.equal(msg, '##teamcity[testSuiteFinished name=\'suite name\']');
+		});
+
+		it('should format a testStarted message', function () {
+			var msg = teamcity.startTest('test name', undefined, true);
+			assert.equal(msg, '##teamcity[testStarted name=\'test name\']');
+		});
+
+		it('should format a testFinished message', function () {
+			var msg = teamcity.finishTest('test name', undefined, true);
+			assert.equal(msg, '##teamcity[testFinished name=\'test name\']');
+		});
+
+		it('should format a testIgnored message', function () {
+			var msg = teamcity.ignoreTest('test name', 'reason', undefined,
+				true);
+			assert.equal(msg, '##teamcity[testIgnored name=\'test name\' message=\'reason\']');
+		});
+
+		it('should format a testStdOut message', function () {
+			var msg = teamcity.testOutput('test name', 'stdout', undefined,
+				true);
+			assert.equal(msg, '##teamcity[testStdOut name=\'test name\' out=\'stdout\']');
+		});
+
+		it('should format a testStdErr message', function () {
+			var msg = teamcity.testError('test name', 'stderr', undefined,
+				true);
+			assert.equal(msg, '##teamcity[testStdErr name=\'test name\' out=\'stderr\']');
+		});
+
+		it('should format a testFailed message', function () {
+			var msg = teamcity.failTest('test name', 'failure message', 'details', undefined,
+				true);
+			assert.equal(msg, '##teamcity[testFailed name=\'test name\' message=\'failure message\' details=\'details\']');
+		});
+
 	});
 
 });
