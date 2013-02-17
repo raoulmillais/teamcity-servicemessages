@@ -107,6 +107,20 @@ module.exports = {
 								disableTimestamp) {
 		return this.formatMessage('publishArtifacts', path, flowId,
 			disableTimestamp);
+	},
+	progress: function progress(message, flowId, disableTimestamp) {
+		return this.formatMessage('progressMessage', message, flowId,
+			disableTimestamp);
+	},
+	startProgress: function startProgress(message, flowId, disableTimestamp) {
+		return this.formatMessage('progressStarted', message, flowId,
+			disableTimestamp);
+	},
+	finishProgress: function finishProgress(message, flowId, disableTimestamp) {
+		return this.formatMessage('progressFinished', message, flowId,
+			disableTimestamp);
 	}
+
+
 
 };

@@ -165,4 +165,26 @@ describe('Teamcity Service Messages', function () {
 
 	});
 
+	describe('build progress messages', function () {
+
+		it('should format a progressMessage message', function () {
+			var msg = teamcity.progress('progress message', undefined,
+				true);
+			assert.equal(msg, '##teamcity[progressMessage \'progress message\']');
+		});
+
+		it('should format a progressStart message', function () {
+			var msg = teamcity.startProgress('progress message', undefined,
+				true);
+			assert.equal(msg, '##teamcity[progressStarted \'progress message\']');
+		});
+
+		it('should format a progressFinished message', function () {
+			var msg = teamcity.finishProgress('progress message', undefined,
+				true);
+			assert.equal(msg, '##teamcity[progressFinished \'progress message\']');
+		});
+
+	});
+
 });
