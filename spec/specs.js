@@ -155,4 +155,14 @@ describe('Teamcity Service Messages', function () {
 
 	});
 
+	describe('publishing artifacts', function () {
+
+		it('should format a publishArtifacts message', function () {
+			var msg = teamcity.publishArtifacts('/path/to/artifact', undefined,
+				true);
+			assert.equal(msg, '##teamcity[publishArtifacts \'/path/to/artifact\']');
+		});
+
+	});
+
 });

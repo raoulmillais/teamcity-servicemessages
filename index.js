@@ -102,8 +102,11 @@ module.exports = {
 			message: message,
 			details: details
 		}, flowId, disableTimestamp);
+	},
+	publishArtifacts: function publishArtifacts(path, flowId,
+								disableTimestamp) {
+		return this.formatMessage('publishArtifacts', path, flowId,
+			disableTimestamp);
 	}
-
-
 
 };
