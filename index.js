@@ -29,12 +29,32 @@ module.exports = {
 	},
 	openBlock: function openBlock(blockName, flowId, disableTimestamp) {
 		return this.formatMessage('blockOpened', {
-			name: blockName 
+			name: blockName
 		}, flowId, disableTimestamp);
 	},
 	closeBlock: function closeBlock(blockName, flowId, disableTimestamp) {
 		return this.formatMessage('blockClosed', {
-			name: blockName 
+			name: blockName
+		}, flowId, disableTimestamp);
+	},
+	buildMessage: function buildMessage(text, error, status, flowId,
+										disableTimestamp) {
+		return this.formatMessage('message', {
+			text: text,
+			errorDetails: error,
+			status: status.toUpperCase()
+		}, flowId, disableTimestamp);
+	},
+	startCompilation: function startCompilation(compilerName, flowId,
+												disableTimestamp) {
+		return this.formatMessage('compilationStarted', {
+			compiler: compilerName
+		}, flowId, disableTimestamp);
+	},
+	finishCompilation: function finishCompilation(compilerName, flowId,
+												disableTimestamp) {
+		return this.formatMessage('compilationFinished', {
+			compiler: compilerName
 		}, flowId, disableTimestamp);
 	}
 

@@ -3,7 +3,7 @@ var teamcity = require('../');
 
 describe('Teamcity Service Messages', function () {
 
-	describe('formatMessage', function () {
+	describe('message formatting', function () {
 
 		it('should format single attribute messages', function () {
 			var message = teamcity.formatMessage('messageName', 'value',
@@ -45,7 +45,7 @@ describe('Teamcity Service Messages', function () {
 		});
 	});
 
-	describe('escapeValue', function () {
+	describe('escaping', function () {
 
 		it('should escape apostrophes', function () {
 			var escaped = teamcity.escapeValue('\'');
@@ -87,5 +87,23 @@ describe('Teamcity Service Messages', function () {
 		});
 	});
 
+	describe('compiler messages', function () {
+
+		it('should format a build message', function () {
+			var msg = teamcity.buildMessage('message text', 'error details', 'error',
+				undefined, true);
+			assert.equal(msg, '##teamcity[message text=\'message text\' errorDetails=\'error details\' status=\'ERROR\']');
+		});
+
+		it('should format a compilationStarted message', function () {
+			var msg = teamcity.startCompilation('mycc', undefined, true);
+			assert.equal(msg, '##teamcity[compilationStarted compiler=\'mycc\']');
+		});
+
+		it('should format a compilationFinished message', function () {
+			var msg = teamcity.finishCompilation('mycc', undefined, true);
+			assert.equal(msg, '##teamcity[compilationFinished compiler=\'mycc\']');
+		});
+	});
 
 });
