@@ -1,0 +1,23 @@
+{
+  "name": "teamcity-servicemessages",
+  "version": "0.0.0",
+  "description": "Message formatters and helpers for reporting to teamcity",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec spec/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/raoulmillais/teamcity-servicemessages.git"
+  },
+  "keywords": [
+    "teamcity",
+    "logging",
+    "build"
+  ],
+  "author": "Raoul Millais",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.8.1"
+  }
+}
