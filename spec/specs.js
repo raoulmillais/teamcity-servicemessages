@@ -158,8 +158,7 @@ describe('Teamcity Service Messages', function () {
 	describe('publishing artifacts', function () {
 
 		it('should format a publishArtifacts message', function () {
-			var msg = teamcity.publishArtifacts('/path/to/artifact', undefined,
-				true);
+			var msg = teamcity.publishArtifacts('/path/to/artifact');
 			assert.equal(msg, '##teamcity[publishArtifacts \'/path/to/artifact\']');
 		});
 
@@ -180,8 +179,7 @@ describe('Teamcity Service Messages', function () {
 		});
 
 		it('should format a progressFinished message', function () {
-			var msg = teamcity.finishProgress('progress message', undefined,
-				true);
+			var msg = teamcity.finishProgress('progress message', undefined, true);
 			assert.equal(msg, '##teamcity[progressFinished \'progress message\']');
 		});
 
@@ -191,16 +189,56 @@ describe('Teamcity Service Messages', function () {
 
 		it('should format a buildStatus message when failing the build',
 																function () {
-			var msg = teamcity.failBuild('failure message', undefined, true);
+			var msg = teamcity.failBuild('failure message');
 			assert.equal(msg, '##teamcity[buildStatus status=\'FAILURE\' text=\'failure message\']');
 		});
 
 		it('should format a buildStatus message when passing the build',
 																function () {
-			var msg = teamcity.passBuild('success message', undefined, true);
+			var msg = teamcity.passBuild('success message');
 			assert.equal(msg, '##teamcity[buildStatus status=\'SUCCESS\' text=\'success message\']');
 		});
 
 	});
 
+	describe('build number message', function () {
+
+		it('should format a buildNumber message', function () {
+			var msg = teamcity.setBuildNumber('1.0.42');
+			assert.equal(msg, '##teamcity[buildNumber \'1.0.42\']');
+		});
+
+	});
+
+	describe('build parameter messages', function () {
+
+		it('should format a setParameter message', function () {
+			var msg = teamcity.setParameter('env.FOO', 'bar');
+			assert.equal(msg, '##teamcity[setParameter name=\'env.FOO\' value=\'bar\']');
+		});
+
+	});
+
+	describe('build statistic messages', function () {
+
+		it('should format a buildStatisticValue message', function () {
+			var msg = teamcity.reportBuildStatistic('statKey', 'statValue');
+			assert.equal(msg, '##teamcity[buildStatisticValue key=\'statKey\' value=\'statValue\']');
+		});
+
+	});
+
+	describe('service message toggling', function () {
+
+		it('should return an enableServiceMessages message', function () {
+			var msg = teamcity.enableServiceMessages();
+			assert.equal(msg, '##teamcity[enableServiceMessages]');
+		});
+
+		it('should return an disableServiceMessages message', function () {
+			var msg = teamcity.disableServiceMessages();
+			assert.equal(msg, '##teamcity[disableServiceMessages]');
+		});
+
+	});
 });

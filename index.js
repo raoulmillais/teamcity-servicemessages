@@ -103,10 +103,8 @@ module.exports = {
 			details: details
 		}, flowId, disableTimestamp);
 	},
-	publishArtifacts: function publishArtifacts(path, flowId,
-								disableTimestamp) {
-		return this.formatMessage('publishArtifacts', path, flowId,
-			disableTimestamp);
+	publishArtifacts: function publishArtifacts(path) {
+		return this.formatMessage('publishArtifacts', path, undefined, true);
 	},
 	progress: function progress(message, flowId, disableTimestamp) {
 		return this.formatMessage('progressMessage', message, flowId,
@@ -120,16 +118,38 @@ module.exports = {
 		return this.formatMessage('progressFinished', message, flowId,
 			disableTimestamp);
 	},
-	failBuild: function failBuild(message, flowId, disableTimestamp) {
+	failBuild: function failBuild(message) {
 		return this.formatMessage('buildStatus', {
 			status: 'FAILURE',
 			text: message
-		}, flowId, disableTimestamp);
+		}, undefined, true);
 	},
-	passBuild: function passBuild(message, flowId, disableTimestamp) {
+	passBuild: function passBuild(message) {
 		return this.formatMessage('buildStatus', {
 			status: 'SUCCESS',
 			text: message
-		}, flowId, disableTimestamp);
+		}, undefined, true);
+	},
+	setBuildNumber: function setBuildNumber(num) {
+		return this.formatMessage('buildNumber', num, undefined, true);
+	},
+	setParameter: function setParameter(name, value) {
+		return this.formatMessage('setParameter', {
+			name: name,
+			value: value
+		}, undefined, true);
+	},
+	reportBuildStatistic: function reportBuildStatistic(name, value) {
+		return this.formatMessage('buildStatisticValue', {
+			key: name,
+			value: value
+		}, undefined, true);
+	},
+	enableServiceMessages: function enableServiceMessages() {
+		return '##teamcity[enableServiceMessages]';
+	},
+	disableServiceMessages: function disableServiceMessages() {
+		return '##teamcity[disableServiceMessages]';
 	}
+
 };
