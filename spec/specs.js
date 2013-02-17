@@ -187,4 +187,20 @@ describe('Teamcity Service Messages', function () {
 
 	});
 
+	describe('build status messages', function () {
+
+		it('should format a buildStatus message when failing the build',
+																function () {
+			var msg = teamcity.failBuild('failure message', undefined, true);
+			assert.equal(msg, '##teamcity[buildStatus status=\'FAILURE\' text=\'failure message\']');
+		});
+
+		it('should format a buildStatus message when passing the build',
+																function () {
+			var msg = teamcity.passBuild('success message', undefined, true);
+			assert.equal(msg, '##teamcity[buildStatus status=\'SUCCESS\' text=\'success message\']');
+		});
+
+	});
+
 });

@@ -119,8 +119,17 @@ module.exports = {
 	finishProgress: function finishProgress(message, flowId, disableTimestamp) {
 		return this.formatMessage('progressFinished', message, flowId,
 			disableTimestamp);
+	},
+	failBuild: function failBuild(message, flowId, disableTimestamp) {
+		return this.formatMessage('buildStatus', {
+			status: 'FAILURE',
+			text: message
+		}, flowId, disableTimestamp);
+	},
+	passBuild: function passBuild(message, flowId, disableTimestamp) {
+		return this.formatMessage('buildStatus', {
+			status: 'SUCCESS',
+			text: message
+		}, flowId, disableTimestamp);
 	}
-
-
-
 };
