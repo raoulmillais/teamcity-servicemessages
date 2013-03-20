@@ -95,6 +95,12 @@ describe('Teamcity Service Messages', function () {
 			assert.equal(msg, '##teamcity[message text=\'message text\' errorDetails=\'error details\' status=\'ERROR\']');
 		});
 
+		it('should format a build message', function () {
+			var msg = teamcity.buildMessage('message text');
+console.log(msg);
+			assert.ok(/##teamcity\[message text='message text' timestamp='\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z'\]/.test(msg));
+		});
+
 		it('should format a compilationStarted message', function () {
 			var msg = teamcity.startCompilation('mycc', undefined, true);
 			assert.equal(msg, '##teamcity[compilationStarted compiler=\'mycc\']');

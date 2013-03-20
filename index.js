@@ -39,11 +39,15 @@ module.exports = {
 	},
 	buildMessage: function buildMessage(text, error, status, flowId,
 										disableTimestamp) {
-		return this.formatMessage('message', {
-			text: text,
-			errorDetails: error,
-			status: status.toUpperCase()
-		}, flowId, disableTimestamp);
+		if (error) {
+			return this.formatMessage('message', {
+				text: text,
+				errorDetails: error,
+				status: status.toUpperCase()
+			}, flowId, disableTimestamp);
+		} else {
+			return this.formatMessage('message', { text: text }, flowId, disableTimestamp);
+		}
 	},
 	startCompilation: function startCompilation(compilerName, flowId,
 												disableTimestamp) {
