@@ -1,7 +1,7 @@
 var assert = require('assert');
-var teamcity = require('../');
+var teamcity = require('../lib/teamcity-message-formatter');
 
-describe('Teamcity Service Messages', function () {
+describe('Teamcity Message Formatter', function () {
 
 	describe('message formatting', function () {
 
@@ -97,7 +97,7 @@ describe('Teamcity Service Messages', function () {
 
 		it('should format a build message', function () {
 			var msg = teamcity.buildMessage('message text');
-console.log(msg);
+
 			assert.ok(/##teamcity\[message text='message text' timestamp='\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z'\]/.test(msg));
 		});
 
