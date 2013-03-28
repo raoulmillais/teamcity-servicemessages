@@ -39,7 +39,8 @@ describe('Teamcity Message Formatter', function () {
 			assert.equal(message, '##teamcity[messageName \'value\' flowId=\'flow1\']');
 		});
 
-		it('should add a timestamp to messages by default', function () {
+		// Date is broken in teamcity
+		it.skip('should add a timestamp to messages by default', function () {
 			var message = teamcity.formatMessage('messageName', 'value');
 			assert.ok(/##teamcity\[messageName 'value' timestamp='\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z'\]/.test(message));
 		});
@@ -98,7 +99,7 @@ describe('Teamcity Message Formatter', function () {
 		it('should format a build message', function () {
 			var msg = teamcity.buildMessage('message text');
 
-			assert.ok(/##teamcity\[message text='message text' timestamp='\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z'\]/.test(msg));
+			assert.equal("##teamcity[message text='message text']", msg);
 		});
 
 		it('should format a compilationStarted message', function () {
