@@ -190,12 +190,12 @@ describe('Teamcity Message Formatter', function () {
 		it('should format a progressStart message', function () {
 			var msg = teamcity.startProgress('progress message', undefined,
 				true);
-			assert.equal(msg, '##teamcity[progressStarted \'progress message\']');
+			assert.equal(msg, '##teamcity[progressStart \'progress message\']');
 		});
 
 		it('should format a progressFinished message', function () {
 			var msg = teamcity.finishProgress('progress message', undefined, true);
-			assert.equal(msg, '##teamcity[progressFinished \'progress message\']');
+			assert.equal(msg, '##teamcity[progressFinish \'progress message\']');
 		});
 
 	});
