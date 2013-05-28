@@ -27,6 +27,14 @@ describe('Teamcity Message Formatter', function () {
 			assert.equal(message, '##teamcity[messageName name1=\'value1\' name2=\'value2||\']');
 		});
 
+		it('should escape all values', function () {
+			var message = teamcity.formatMessage('messageName', {
+				name1: 'value1',
+				name2: 'va|lue2|'
+			}, undefined, true);
+			assert.equal(message, '##teamcity[messageName name1=\'value1\' name2=\'va||lue2||\']');
+		});
+
 		it('should escape simple message values', function () {
 			var message = teamcity.formatMessage('messageName', 'value2|',
 				undefined, true);
